@@ -1,0 +1,34 @@
+docker exec -it kafka bash
+// topic
+kafka-topics.sh --bootstrap-server localhost:9092 --list
+
+
+// partition
+
+kafka-topics.sh --bootstrap-server localhost:9092 --describe --topic proposal-audit-log
+
+kafka-topics.sh --bootstrap-server localhost:9092 --describe --topic proposal-deadline-reminder
+
+kafka-topics.sh --bootstrap-server localhost:9092 --describe --topic user-events
+
+//deploy
+
+cd proposal-user-service
+
+//1.build image
+docker build -t user-service:latest .
+
+aws --version
+aws configure
+
+aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 08105084882.dkr.ecr.us-east-2.amazonaws.com
+
+aws configure list
+
+//2.Tag image
+docker tag user-service:latest 081055084882.dkr.ecr.us-east-2.amazonaws.com/user-service:latest
+//login
+aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 081055084882.dkr.ecr.us-east-2.amazonaws.com
+
+//3.push to ECR
+docker push 081055084882.dkr.ecr.us-east-2.amazonaws.com/user-service:latest

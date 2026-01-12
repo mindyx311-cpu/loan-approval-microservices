@@ -1,0 +1,27 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: gateway
+
+  cloud:
+    gateway:
+      routes:
+        - id: user-service
+          uri: lb://proposal-user-service
+          predicates:
+            - Path=/user/**
+        - id: approval-service
+          uri: lb://proposal-approval-service
+          predicates:
+            - Path=/approval/**
+        - id: notification-service
+          uri: lb://proposal-notification-service
+          predicates:
+            - Path=/notification/**
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/

@@ -1,0 +1,8 @@
+docker pull cassandra:latest
+docker run --name my-cassandra -d -p 9042:9042 cassandra:latest
+docker ps
+docker logs -f my-cassandra
+docker exec -it my-cassandra cqlsh
+DESCRIBE KEYSPACES;
+DESCRIBE TABLES;
+DESCRIBE TABLE users_by_id;

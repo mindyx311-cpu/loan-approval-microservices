@@ -1,0 +1,18 @@
+docker compose up -d zookeeper kafka
+docker compose ps
+docker logs -f zookeeper
+
+Ctrl+C （stop log follow）
+docker compose up -d kafka
+docker logs -f kafka
+
+
+# stop & delete kafka/zookeeper
+docker-compose down
+
+# delete mirror image
+docker system prune -a
+
+#delete old zookeeper
+docker rm -f zookeeper
+
