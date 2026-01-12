@@ -139,14 +139,3 @@ This project is intended as:
     - Spring Cloud ecosystem
     - Event-driven backend systems
 
----
-
-## Author
-
-Mindy Xu
-
----
-
-## License
-
-For learning and demonstration purposes only.
